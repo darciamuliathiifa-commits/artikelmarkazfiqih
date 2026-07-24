@@ -1,0 +1,1 @@
+ALTER TABLE "qna" ALTER COLUMN "category_id" SET NOT NULL;
