@@ -57,27 +57,9 @@ export function SiteHeader({
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background shadow-sm">
       <div>
-        <div className="mx-auto flex h-16 max-w-5xl items-center gap-4 px-4">
-          <Link href="/" className="flex shrink-0 items-center gap-3">
-            <Logo height={34} priority />
-            <div className="hidden border-l border-border pl-3 sm:block">
-              <p className="font-heading text-sm font-bold leading-tight text-foreground">
-                Markaz Fiqih
-              </p>
-              <p className="text-[11px] leading-tight text-muted-foreground">
-                {tagline}
-              </p>
-            </div>
-          </Link>
-
-          <div className="ml-auto flex items-center gap-2">
-            <GlobalSearch
-              className="hidden w-full max-w-xs lg:block"
-              placeholder="Cari"
-            />
-
-            <ThemeToggle />
-
+        <div className="mx-auto flex h-16 max-w-5xl items-center justify-between gap-2 px-4">
+          {/* Left: Hamburger Menu */}
+          <div className="flex items-center gap-2">
             <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
               <SheetTrigger
                 render={
@@ -85,108 +67,126 @@ export function SiteHeader({
                     variant="ghost"
                     size="icon"
                     aria-label="Buka menu"
-                    className="lg:hidden"
+                    className="shrink-0"
                   />
                 }
               >
                 <Menu className="size-5" />
               </SheetTrigger>
-            <SheetContent side="right" className="w-80 sm:w-96">
-              <SheetHeader>
-                <SheetTitle>Markaz Fiqih</SheetTitle>
-              </SheetHeader>
-              <div className="flex flex-col gap-4 overflow-y-auto px-4 pb-6">
-                <GlobalSearch onNavigate={() => setSheetOpen(false)} />
+              <SheetContent side="left" className="w-80 sm:w-96">
+                <SheetHeader className="border-b pb-3">
+                  <SheetTitle className="flex items-center gap-2">
+                    <Logo height={24} />
+                  </SheetTitle>
+                </SheetHeader>
+                <div className="flex flex-col gap-4 overflow-y-auto px-4 py-4">
+                  <GlobalSearch onNavigate={() => setSheetOpen(false)} placeholder="Cari..." />
 
-                <nav className="flex flex-col gap-1">
-                  {mainLinks.slice(0, 1).map((link) => (
-                    <SheetClose
-                      key={link.href}
-                      nativeButton={false}
-                      render={<Link href={link.href} />}
-                      className="rounded-lg px-3 py-2 text-sm font-semibold text-primary hover:bg-muted"
-                    >
-                      {link.label}
-                    </SheetClose>
-                  ))}
+                  <nav className="flex flex-col gap-1">
+                    {mainLinks.slice(0, 1).map((link) => (
+                      <SheetClose
+                        key={link.href}
+                        nativeButton={false}
+                        render={<Link href={link.href} />}
+                        className="rounded-lg px-3 py-2 text-sm font-semibold text-primary hover:bg-muted"
+                      >
+                        {link.label}
+                      </SheetClose>
+                    ))}
 
-                  <div className="px-3 py-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                    Artikel
-                  </div>
-                  <SheetClose
-                    nativeButton={false}
-                    render={<Link href="/artikel" />}
-                    className="rounded-lg px-5 py-1.5 text-sm hover:bg-muted"
-                  >
-                    Semua Artikel
-                  </SheetClose>
-                  {categories.map((category) => (
+                    <div className="px-3 py-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                      Artikel
+                    </div>
                     <SheetClose
-                      key={category.slug}
                       nativeButton={false}
-                      render={<Link href={`/artikel/kategori/${category.slug}`} />}
+                      render={<Link href="/artikel" />}
                       className="rounded-lg px-5 py-1.5 text-sm hover:bg-muted"
                     >
-                      {category.name}
+                      Semua Artikel
                     </SheetClose>
-                  ))}
+                    {categories.map((category) => (
+                      <SheetClose
+                        key={category.slug}
+                        nativeButton={false}
+                        render={<Link href={`/artikel/kategori/${category.slug}`} />}
+                        className="rounded-lg px-5 py-1.5 text-sm hover:bg-muted"
+                      >
+                        {category.name}
+                      </SheetClose>
+                    ))}
 
-                  <SheetClose
-                    nativeButton={false}
-                    render={<Link href="/tanya-jawab" />}
-                    className="rounded-lg px-3 py-2 text-sm font-semibold text-primary hover:bg-muted"
-                  >
-                    Tanya Jawab
-                  </SheetClose>
-
-                  <SheetClose
-                    nativeButton={false}
-                    render={<Link href="/agenda" />}
-                    className="rounded-lg px-3 py-2 text-sm font-semibold text-primary hover:bg-muted"
-                  >
-                    Agenda
-                  </SheetClose>
-
-                  <SheetClose
-                    nativeButton={false}
-                    render={<Link href="/kegiatan" />}
-                    className="rounded-lg px-3 py-2 text-sm font-semibold text-primary hover:bg-muted"
-                  >
-                    Kegiatan
-                  </SheetClose>
-
-                  <a
-                    href={kelasUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-semibold text-primary hover:bg-muted"
-                  >
-                    Kelas
-                    <ExternalLink className="size-3" />
-                  </a>
-
-                  <SheetClose
-                    nativeButton={false}
-                    render={<Link href="/e-book" />}
-                    className="rounded-lg px-3 py-2 text-sm font-semibold text-primary hover:bg-muted"
-                  >
-                    E-Book
-                  </SheetClose>
-
-                  {mainLinks.slice(2).map((link) => (
                     <SheetClose
-                      key={link.href}
                       nativeButton={false}
-                      render={<Link href={link.href} />}
+                      render={<Link href="/tanya-jawab" />}
                       className="rounded-lg px-3 py-2 text-sm font-semibold text-primary hover:bg-muted"
                     >
-                      {link.label}
+                      Tanya Jawab
                     </SheetClose>
-                  ))}
-                </nav>
-              </div>
-            </SheetContent>
-          </Sheet>
+
+                    <SheetClose
+                      nativeButton={false}
+                      render={<Link href="/agenda" />}
+                      className="rounded-lg px-3 py-2 text-sm font-semibold text-primary hover:bg-muted"
+                    >
+                      Agenda
+                    </SheetClose>
+
+                    <SheetClose
+                      nativeButton={false}
+                      render={<Link href="/kegiatan" />}
+                      className="rounded-lg px-3 py-2 text-sm font-semibold text-primary hover:bg-muted"
+                    >
+                      Kegiatan
+                    </SheetClose>
+
+                    <a
+                      href={kelasUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-semibold text-primary hover:bg-muted"
+                    >
+                      Kelas
+                      <ExternalLink className="size-3" />
+                    </a>
+
+                    <SheetClose
+                      nativeButton={false}
+                      render={<Link href="/e-book" />}
+                      className="rounded-lg px-3 py-2 text-sm font-semibold text-primary hover:bg-muted"
+                    >
+                      E-Book
+                    </SheetClose>
+
+                    {mainLinks.slice(2).map((link) => (
+                      <SheetClose
+                        key={link.href}
+                        nativeButton={false}
+                        render={<Link href={link.href} />}
+                        className="rounded-lg px-3 py-2 text-sm font-semibold text-primary hover:bg-muted"
+                      >
+                        {link.label}
+                      </SheetClose>
+                    ))}
+                  </nav>
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
+
+          {/* Center: Logo */}
+          <div className="flex flex-1 items-center justify-center px-2">
+            <Link href="/" className="flex shrink-0 items-center">
+              <Logo height={26} priority />
+            </Link>
+          </div>
+
+          {/* Right: Search & Theme Toggle */}
+          <div className="flex items-center gap-2">
+            <GlobalSearch
+              className="w-36 sm:w-48 md:w-64"
+              placeholder="Cari..."
+            />
+            <ThemeToggle />
           </div>
         </div>
       </div>
