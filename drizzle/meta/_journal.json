@@ -1,0 +1,97 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1784568488327,
+      "tag": "0000_complete_slyde",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1784568496624,
+      "tag": "0001_add_trigram_search_indexes",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1784601250383,
+      "tag": "0002_fearless_lady_mastermind",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1784601346645,
+      "tag": "0003_warm_guardian",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1784611734274,
+      "tag": "0004_skinny_annihilus",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1784620000000,
+      "tag": "0005_add_performance_indexes",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1784656102729,
+      "tag": "0006_hard_banshee",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1784697097661,
+      "tag": "0007_daffy_talisman",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1784732374778,
+      "tag": "0008_stiff_red_ghost",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1784736101246,
+      "tag": "0009_mature_red_hulk",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1784763029781,
+      "tag": "0010_add_kegiatan_table",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1784847600000,
+      "tag": "0011_qna_topics_replace_category",
+      "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "7",
+      "when": 1784815809268,
+      "tag": "0012_add_ebooks_table",
+      "breakpoints": true
+    }
+  ]
+}
