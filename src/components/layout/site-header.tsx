@@ -177,9 +177,15 @@ export function SiteHeader({
             </Sheet>
           </div>
 
-          {/* Center: Emblem Logo + Text & Tagline */}
-          <div className="flex flex-1 items-center justify-center px-2">
-            <Link href="/" className="flex shrink-0 items-center gap-2.5">
+          {/* Center: Mobile Image or Desktop Emblem Logo + Text & Tagline */}
+          <div className="flex flex-1 items-center justify-center px-1 sm:px-2">
+            {/* Mobile View: Navbar Mobile Markaz Image linking to Home */}
+            <Link href="/" className="flex shrink-0 items-center sm:hidden" aria-label="Home">
+              <Logo mobile height={28} priority className="h-7 w-auto max-w-[200px] object-contain" />
+            </Link>
+
+            {/* Desktop View: Emblem Logo + Text & Tagline linking to Home */}
+            <Link href="/" className="hidden shrink-0 items-center gap-2.5 sm:flex" aria-label="Home">
               <Logo emblem height={30} priority />
               <div className="border-l border-border pl-2.5 flex flex-col justify-center text-left">
                 <p className="font-heading text-sm font-bold leading-tight text-foreground">
@@ -193,9 +199,9 @@ export function SiteHeader({
           </div>
 
           {/* Right: Search & Theme Toggle */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2">
             <GlobalSearch
-              className="w-36 sm:w-48 md:w-64"
+              className="w-28 sm:w-48 md:w-64"
               placeholder="Cari..."
             />
             <ThemeToggle />
