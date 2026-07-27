@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const FULL_LOGO_ASPECT_RATIO = 1024 / 330;
 const EMBLEM_ASPECT_RATIO = 439 / 330;
-const MOBILE_LOGO_ASPECT_RATIO = 3362 / 394;
+const MOBILE_LOGO_ASPECT_RATIO = 1598 / 485;
 
 export function Logo({
   variant = "red",
