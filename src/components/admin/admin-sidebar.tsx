@@ -126,28 +126,35 @@ export function AdminSidebar() {
       </aside>
 
       <div className="flex items-center justify-between border-b border-border p-3 lg:hidden">
-        <Link href="/admin" className="flex items-center gap-2">
-          <Logo height={26} />
-          <span className="text-xs font-semibold text-muted-foreground">
-            Panel Admin
-          </span>
-        </Link>
-        <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
-          <SheetTrigger
-            render={<Button variant="ghost" size="icon" aria-label="Buka menu admin" />}
-          >
-            <Menu className="size-5" />
-          </SheetTrigger>
-          <SheetContent side="left" className="w-72">
-            <SheetHeader>
-              <SheetTitle>Panel Admin</SheetTitle>
-            </SheetHeader>
-            <div className="flex flex-col gap-4 px-4 pb-6">
-              <NavLinks pathname={pathname} onNavigate={() => setSheetOpen(false)} />
-              <AccountFooter />
-            </div>
-          </SheetContent>
-        </Sheet>
+        <div className="flex items-center gap-2">
+          <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
+            <SheetTrigger
+              render={<Button variant="ghost" size="icon" aria-label="Buka menu admin" />}
+            >
+              <Menu className="size-5" />
+            </SheetTrigger>
+            <SheetContent side="left" className="w-72">
+              <SheetHeader className="border-b pb-3">
+                <SheetTitle className="flex items-center gap-2">
+                  <Logo height={26} />
+                  <span className="text-xs font-semibold text-muted-foreground">
+                    Panel Admin
+                  </span>
+                </SheetTitle>
+              </SheetHeader>
+              <div className="flex flex-col gap-4 px-4 pt-4 pb-6">
+                <NavLinks pathname={pathname} onNavigate={() => setSheetOpen(false)} />
+                <AccountFooter />
+              </div>
+            </SheetContent>
+          </Sheet>
+          <Link href="/admin" className="flex items-center gap-2">
+            <Logo height={24} />
+            <span className="text-xs font-semibold text-muted-foreground">
+              Panel Admin
+            </span>
+          </Link>
+        </div>
       </div>
     </>
   );
