@@ -57,9 +57,9 @@ export function SiteHeader({
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background shadow-sm">
       <div>
-        <div className="mx-auto flex h-16 max-w-5xl items-center justify-between gap-2 px-4">
-          {/* Left: Hamburger Menu */}
-          <div className="flex items-center gap-2">
+        <div className="mx-auto flex h-16 max-w-5xl items-center justify-between gap-3 px-4">
+          {/* Left: Hamburger Menu & Logo Group */}
+          <div className="flex shrink-0 items-center gap-2 sm:gap-3">
             <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
               <SheetTrigger
                 render={
@@ -175,13 +175,10 @@ export function SiteHeader({
                 </div>
               </SheetContent>
             </Sheet>
-          </div>
 
-          {/* Center: Mobile Image or Desktop Emblem Logo + Text & Tagline */}
-          <div className="flex flex-1 items-center justify-center px-1 sm:px-2">
             {/* Mobile View: Navbar Mobile Markaz Image linking to Home */}
             <Link href="/" className="flex shrink-0 items-center sm:hidden" aria-label="Home">
-              <Logo mobile height={28} priority className="h-7 w-auto max-w-[200px] object-contain" />
+              <Logo mobile height={26} priority className="h-6.5 w-auto max-w-[180px] object-contain" />
             </Link>
 
             {/* Desktop View: Emblem Logo + Text & Tagline linking to Home */}
@@ -199,9 +196,9 @@ export function SiteHeader({
           </div>
 
           {/* Right: Search & Theme Toggle */}
-          <div className="flex items-center gap-1.5 sm:gap-2">
+          <div className="flex items-center gap-2 ml-auto">
             <GlobalSearch
-              className="w-28 sm:w-48 md:w-64"
+              className="w-32 xs:w-40 sm:w-48 md:w-64"
               placeholder="Cari..."
             />
             <ThemeToggle />
