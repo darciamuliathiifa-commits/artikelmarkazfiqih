@@ -6,11 +6,11 @@ import { db } from "@/db";
 import { users, sessions, accounts, verifications } from "@/db/schema";
 
 export const auth = betterAuth({
-  ...(process.env.BETTER_AUTH_URL ? { baseURL: process.env.BETTER_AUTH_URL } : {}),
   secret: process.env.BETTER_AUTH_SECRET || "markaz-fiqih-default-secret-key-2026",
   trustedOrigins: [
     "https://markazfiqih.com",
     "https://www.markazfiqih.com",
+    "https://artikelmarkazfiqih.vercel.app",
     "http://localhost:3000",
   ],
   database: drizzleAdapter(db, {
