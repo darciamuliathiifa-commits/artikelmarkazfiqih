@@ -3,10 +3,17 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { Menu, ChevronDown, ExternalLink } from "lucide-react";
+import { Menu, ChevronDown, ExternalLink, Search } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { GlobalSearch } from "@/components/search/global-search";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -22,7 +29,6 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Logo } from "@/components/logo";
-import { ThemeToggle } from "@/components/theme-toggle";
 
 const mainLinks = [
   { label: "Home", href: "/" },
@@ -49,6 +55,7 @@ export function SiteHeader({
   tagline: string;
 }) {
   const [sheetOpen, setSheetOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const pathname = usePathname();
 
   const isArtikelActive = pathname.startsWith("/artikel");
@@ -198,13 +205,36 @@ export function SiteHeader({
             </Link>
           </div>
 
-          {/* Right: Search & Theme Toggle */}
-          <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
-            <GlobalSearch
-              className="w-28 xs:w-36 sm:w-48 md:w-64"
-              placeholder="Cari..."
-            />
-            <ThemeToggle />
+          {/* Right: Search Icon Only */}
+          <div className="flex shrink-0 items-center">
+            <Dialog open={searchOpen} onOpenChange={setSearchOpen}>
+              <DialogTrigger
+                render={
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    aria-label="Cari"
+                    className="size-9 rounded-full text-foreground hover:bg-muted"
+                  />
+                }
+              >
+                <Search className="size-5" />
+              </DialogTrigger>
+              <DialogContent className="w-[calc(100%-2rem)] sm:max-w-lg">
+                <DialogHeader>
+                  <DialogTitle className="text-left font-heading text-lg font-bold">
+                    Pencarian Markaz Fiqih
+                  </DialogTitle>
+                </DialogHeader>
+                <div className="pt-2">
+                  <GlobalSearch
+                    onNavigate={() => setSearchOpen(false)}
+                    placeholder="Ketik kata kunci pencarian..."
+                    className="w-full"
+                  />
+                </div>
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
       </div>
