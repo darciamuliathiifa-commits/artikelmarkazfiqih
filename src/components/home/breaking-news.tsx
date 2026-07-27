@@ -9,7 +9,12 @@ import { TrendingTopics } from "@/components/home/sidebar/trending-topics";
 import { SidebarAdBanner } from "@/components/home/sidebar/sidebar-ad-banner";
 
 export async function BreakingNews() {
-  const articles = await getLatestArticles(4);
+  let articles: any[] = [];
+  try {
+    articles = await getLatestArticles(4);
+  } catch (err) {
+    console.warn("BreakingNews DB query fallback:", err);
+  }
 
   if (articles.length === 0) return null;
 

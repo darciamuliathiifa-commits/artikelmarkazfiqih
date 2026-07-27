@@ -6,10 +6,18 @@ import { getFeaturedArticles, getLatestArticles } from "@/lib/data/articles";
 import { formatDate } from "@/lib/format";
 
 export async function HeroMagazine() {
-  const featured = await getFeaturedArticles(2);
-  const articles = featured.length >= 2 ? featured : await getLatestArticles(2);
-
-  const [hero, side] = articles;
+  let hero = null;
+  let side = null;
+  try {
+    const featured = await getFeaturedArticles(2);
+    const articles = featured.length >= 2 ? featured : await getLatestArticles(2);
+    if (articles.length > 0) {
+      hero = articles[0];
+      side = articles[1];
+    }
+  } catch (err) {
+    console.warn("HeroMagazine DB query fallback:", err);
+  }
 
   return (
     <section className="mx-auto w-full max-w-5xl px-4 pt-5 pb-8 sm:pt-6">

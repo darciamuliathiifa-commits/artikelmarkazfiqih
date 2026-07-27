@@ -4,10 +4,15 @@ import Image from "next/image";
 import { getContributorsWithCount } from "@/lib/data/authors";
 
 export async function TopAuthors() {
-  const contributors = await getContributorsWithCount();
-  const top = [...contributors]
-    .sort((a, b) => b.articleCount - a.articleCount)
-    .slice(0, 4);
+  let top: any[] = [];
+  try {
+    const contributors = await getContributorsWithCount();
+    top = [...contributors]
+      .sort((a, b) => b.articleCount - a.articleCount)
+      .slice(0, 4);
+  } catch (err) {
+    console.warn("TopAuthors DB query fallback:", err);
+  }
 
   if (top.length === 0) return null;
 

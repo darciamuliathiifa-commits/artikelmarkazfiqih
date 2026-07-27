@@ -7,7 +7,12 @@ import { getLatestAgenda } from "@/db/queries/agenda";
 const FALLBACK_THUMBNAIL = "/images/banner-pattern.webp";
 
 export async function LatestAgenda() {
-  const items = await getLatestAgenda(3);
+  let items: any[] = [];
+  try {
+    items = await getLatestAgenda(3);
+  } catch (err) {
+    console.warn("LatestAgenda DB query fallback:", err);
+  }
 
   if (items.length === 0) return null;
 

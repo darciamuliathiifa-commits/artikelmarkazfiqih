@@ -17,19 +17,33 @@ export type SiteChromeData = {
 };
 
 export async function getSiteChromeData(): Promise<SiteChromeData> {
-  const [categories, settings] = await Promise.all([
-    getAllCategories(),
-    getAllSettings(),
-  ]);
+  let categories: { name: string; slug: string }[] = [];
+  let settings: Record<string, string> = {};
 
-  return {
-    categories: categories.map((category) => ({
+  try {
+    const [cats, setts] = await Promise.all([
+      getAllCategories(),
+      getAllSettings(),
+    ]);
+    categories = cats.map((category) => ({
       name: category.name,
       slug: category.slug,
-    })),
+    }));
+    settings = setts;
+  } catch (err) {
+    console.warn("DB not connected locally, using fallback chrome data.");
+    categories = [
+      { name: "Fiqih Ibadah", slug: "fiqih-ibadah" },
+      { name: "Fiqih Muamalah", slug: "fiqih-muamalah" },
+      { name: "Fiqih Munakahat", slug: "fiqih-munakahat" },
+    ];
+  }
+
+  return {
+    categories,
     kelasUrl: settings.kelas_url || "https://kelasmarkazfiqih.com",
     footer: {
-      address: settings.address ?? "",
+      address: settings.address ?? "Jakarta, Indonesia",
       tagline:
         settings.tagline_footer || "Membumikan Fiqih di Setiap Lini Kehidupan",
       youtubeUrl: settings.youtube_url ?? "",

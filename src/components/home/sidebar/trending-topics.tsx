@@ -2,10 +2,15 @@ import { getCategoriesWithArticleCount } from "@/db/queries/categories";
 import { TrendingTopicsCarousel } from "@/components/home/sidebar/trending-topics-carousel";
 
 export async function TrendingTopics() {
-  const categories = await getCategoriesWithArticleCount();
-  const trending = categories
-    .filter((category) => category.articleCount > 0)
-    .sort((a, b) => b.articleCount - a.articleCount);
+  let trending: any[] = [];
+  try {
+    const categories = await getCategoriesWithArticleCount();
+    trending = categories
+      .filter((category) => category.articleCount > 0)
+      .sort((a, b) => b.articleCount - a.articleCount);
+  } catch (err) {
+    console.warn("TrendingTopics DB query fallback:", err);
+  }
 
   if (trending.length === 0) return null;
 

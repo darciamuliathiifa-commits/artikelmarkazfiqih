@@ -8,7 +8,12 @@ import { formatDate } from "@/lib/format";
 const FALLBACK_THUMBNAIL = "/images/banner-pattern.webp";
 
 export async function LatestKegiatan() {
-  const items = await getFeaturedKegiatan(3);
+  let items: any[] = [];
+  try {
+    items = await getFeaturedKegiatan(3);
+  } catch (err) {
+    console.warn("LatestKegiatan DB query fallback:", err);
+  }
 
   if (items.length === 0) return null;
 

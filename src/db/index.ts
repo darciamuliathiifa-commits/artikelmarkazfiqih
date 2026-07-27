@@ -11,6 +11,7 @@ if (!process.env.DATABASE_URL) {
   }
 }
 
-const sql = neon(process.env.DATABASE_URL!);
+const dbUrl = process.env.DATABASE_URL || "postgresql://placeholder:placeholder@localhost:5432/placeholder";
+const sql = neon(dbUrl);
 
 export const db = drizzle(sql, { schema });
