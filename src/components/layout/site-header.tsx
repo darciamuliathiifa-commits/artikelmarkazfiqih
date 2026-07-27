@@ -75,8 +75,12 @@ export function SiteHeader({
               </SheetTrigger>
               <SheetContent side="left" className="w-80 sm:w-96">
                 <SheetHeader className="border-b pb-3">
-                  <SheetTitle className="flex items-center gap-2">
-                    <Logo height={24} />
+                  <SheetTitle className="flex items-center gap-2.5">
+                    <Logo emblem height={28} />
+                    <div className="flex flex-col text-left">
+                      <span className="font-heading text-sm font-bold leading-tight text-foreground">Markaz Fiqih</span>
+                      <span className="text-[10px] font-normal leading-tight text-muted-foreground">{tagline}</span>
+                    </div>
                   </SheetTitle>
                 </SheetHeader>
                 <div className="flex flex-col gap-4 overflow-y-auto px-4 py-4">
@@ -173,10 +177,18 @@ export function SiteHeader({
             </Sheet>
           </div>
 
-          {/* Center: Logo */}
+          {/* Center: Emblem Logo + Text & Tagline */}
           <div className="flex flex-1 items-center justify-center px-2">
-            <Link href="/" className="flex shrink-0 items-center">
-              <Logo height={26} priority />
+            <Link href="/" className="flex shrink-0 items-center gap-2.5">
+              <Logo emblem height={30} priority />
+              <div className="border-l border-border pl-2.5 flex flex-col justify-center text-left">
+                <p className="font-heading text-sm font-bold leading-tight text-foreground">
+                  Markaz Fiqih
+                </p>
+                <p className="text-[11px] leading-tight text-muted-foreground hidden md:block">
+                  {tagline}
+                </p>
+              </div>
             </Link>
           </div>
 
