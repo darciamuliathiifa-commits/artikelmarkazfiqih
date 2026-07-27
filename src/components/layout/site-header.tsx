@@ -58,8 +58,8 @@ export function SiteHeader({
     <header className="sticky top-0 z-40 border-b border-border bg-background shadow-sm">
       <div>
         <div className="mx-auto flex h-16 max-w-5xl items-center justify-between gap-2 px-3 sm:px-4">
-          {/* Left: Hamburger Menu */}
-          <div className="flex shrink-0 items-center gap-2">
+          {/* Left: Hamburger Menu (Mobile Only) */}
+          <div className="flex shrink-0 items-center sm:hidden">
             <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
               <SheetTrigger
                 render={
@@ -177,21 +177,21 @@ export function SiteHeader({
             </Sheet>
           </div>
 
-          {/* Center: Mobile Logo Markaz Fiqih Menyamping Image or Desktop Logo */}
-          <div className="flex flex-1 items-center justify-center px-1">
+          {/* Desktop Left / Mobile Center: Logo Section */}
+          <div className="flex flex-1 items-center justify-center px-1 sm:flex-initial sm:justify-start sm:px-0">
             {/* Mobile View: Logo Markaz Fiqih Menyamping Image linking to Home */}
             <Link href="/" className="flex shrink-0 items-center sm:hidden" aria-label="Home">
               <Logo mobile height={30} priority className="h-7.5 w-auto max-w-[170px] object-contain" />
             </Link>
 
-            {/* Desktop View: Emblem Logo + Text & Tagline linking to Home */}
+            {/* Desktop View: Emblem Logo + Text & Tagline in top-left corner */}
             <Link href="/" className="hidden shrink-0 items-center gap-2.5 sm:flex" aria-label="Home">
-              <Logo emblem height={30} priority />
+              <Logo emblem height={32} priority />
               <div className="border-l border-border pl-2.5 flex flex-col justify-center text-left">
-                <p className="font-heading text-sm font-bold leading-tight text-foreground">
+                <p className="font-heading text-base font-bold leading-tight text-foreground">
                   Markaz Fiqih
                 </p>
-                <p className="text-[11px] leading-tight text-muted-foreground hidden md:block">
+                <p className="text-xs leading-tight text-muted-foreground hidden md:block">
                   {tagline}
                 </p>
               </div>
