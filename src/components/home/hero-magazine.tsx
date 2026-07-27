@@ -20,20 +20,20 @@ export async function HeroMagazine() {
   }
 
   return (
-    <section className="mx-auto w-full max-w-5xl px-4 pt-5 pb-8 sm:pt-6">
-      <div className="grid grid-cols-1 items-center gap-4 border-b border-border pb-4 text-center lg:grid-cols-3 lg:gap-4 lg:text-left">
-        <h1 className="min-w-0 font-heading text-2xl font-extrabold leading-snug tracking-tight text-foreground sm:text-3xl lg:col-span-2 lg:text-3xl lg:leading-[1.3]">
+    <section className="mx-auto w-full max-w-5xl px-4 pt-3 pb-6 sm:pt-4 sm:pb-6">
+      <div className="grid grid-cols-1 items-center gap-3 border-b border-border pb-3 text-center sm:gap-4 sm:pb-4 lg:grid-cols-3 lg:text-left">
+        <h1 className="min-w-0 font-heading text-xl font-extrabold leading-snug tracking-tight text-foreground sm:text-2xl lg:col-span-2 lg:text-3xl lg:leading-[1.25]">
           Pusat Rujukan Fiqih
           <br />
           Berlandaskan Madzhab Syafi&apos;i
         </h1>
-        <div className="flex flex-col items-center gap-3 sm:max-w-xs lg:col-span-1 lg:items-start">
-          <p className="text-sm text-muted-foreground">
+        <div className="flex flex-col items-center gap-2 sm:gap-2.5 sm:max-w-xs lg:col-span-1 lg:items-start">
+          <p className="text-xs text-muted-foreground sm:text-sm">
             Punya pertanyaan seputar hukum fiqih?
           </p>
           <Link
             href="/kirim-pertanyaan"
-            className="inline-flex w-fit items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
+            className="inline-flex w-fit items-center gap-1.5 rounded-full bg-primary px-3.5 py-1.5 text-xs font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90 sm:px-4 sm:py-2 sm:text-sm"
           >
             Kirim Pertanyaan
             <ArrowRight className="size-3.5" />
@@ -42,14 +42,14 @@ export async function HeroMagazine() {
       </div>
 
       {hero && (
-        <div className="mt-4">
-          <h2 className="relative mb-3 inline-block pb-2 font-heading text-lg font-bold text-foreground after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-8 after:rounded-full after:bg-primary">
+        <div className="mt-3 sm:mt-4">
+          <h2 className="relative mb-2.5 inline-block pb-1.5 font-heading text-base font-bold text-foreground sm:text-lg after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-8 after:rounded-full after:bg-primary">
             Artikel Unggulan
           </h2>
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-3 sm:gap-4 lg:grid-cols-3">
             <Link
               href={`/artikel/${hero.slug}`}
-              className="group relative col-span-1 aspect-[4/3] overflow-hidden rounded-2xl bg-muted shadow-sm transition-shadow hover:shadow-lg sm:aspect-[16/9] lg:col-span-2"
+              className="group relative col-span-1 aspect-[16/10] overflow-hidden rounded-xl bg-muted shadow-sm transition-shadow hover:shadow-lg sm:aspect-[16/9] sm:rounded-2xl lg:col-span-2"
             >
               <Image
                 src={hero.thumbnailUrl}
@@ -62,19 +62,19 @@ export async function HeroMagazine() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent" />
 
               {hero.category && (
-                <span className="absolute left-4 top-4 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground shadow-sm">
+                <span className="absolute left-3 top-3 rounded-full bg-primary px-2.5 py-0.5 text-[11px] font-semibold text-primary-foreground shadow-sm sm:left-4 sm:top-4 sm:px-3 sm:py-1 sm:text-xs">
                   {hero.category.name}
                 </span>
               )}
 
-              <div className="absolute inset-x-0 bottom-0 flex flex-col gap-1.5 p-5 sm:p-6">
-                <h3 className="line-clamp-2 font-heading text-xl font-bold text-white sm:text-2xl">
+              <div className="absolute inset-x-0 bottom-0 flex flex-col gap-1 p-4 sm:gap-1.5 sm:p-6">
+                <h3 className="line-clamp-2 font-heading text-base font-bold text-white sm:text-2xl">
                   {hero.title}
                 </h3>
-                <p className="line-clamp-1 text-sm text-white/75">
+                <p className="line-clamp-1 text-xs text-white/80 sm:text-sm">
                   {hero.excerpt}
                 </p>
-                <span className="text-xs text-white/60">
+                <span className="text-[11px] text-white/60 sm:text-xs">
                   {formatDate(hero.publishedAt)}
                 </span>
               </div>
@@ -83,7 +83,7 @@ export async function HeroMagazine() {
             {side && (
               <Link
                 href={`/artikel/${side.slug}`}
-                className="group relative aspect-[4/3] overflow-hidden rounded-2xl bg-muted shadow-sm transition-shadow hover:shadow-lg sm:aspect-[16/10] lg:aspect-auto lg:h-full"
+                className="group relative aspect-[16/9] overflow-hidden rounded-xl bg-muted shadow-sm transition-shadow hover:shadow-lg sm:aspect-[16/10] sm:rounded-2xl lg:aspect-auto lg:h-full"
               >
                 <Image
                   src={side.thumbnailUrl}
@@ -95,16 +95,16 @@ export async function HeroMagazine() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent" />
 
                 {side.category && (
-                  <span className="absolute left-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
+                  <span className="absolute left-3 top-3 rounded-full bg-white/90 px-2.5 py-0.5 text-[11px] font-semibold text-foreground shadow-sm sm:py-1 sm:text-xs">
                     {side.category.name}
                   </span>
                 )}
 
-                <div className="absolute inset-x-0 bottom-0 flex flex-col gap-1 p-4">
-                  <h3 className="line-clamp-2 font-heading text-base font-bold text-white">
+                <div className="absolute inset-x-0 bottom-0 flex flex-col gap-1 p-3.5 sm:p-4">
+                  <h3 className="line-clamp-2 font-heading text-sm font-bold text-white sm:text-base">
                     {side.title}
                   </h3>
-                  <span className="text-xs text-white/60">
+                  <span className="text-[11px] text-white/60 sm:text-xs">
                     {formatDate(side.publishedAt)}
                   </span>
                 </div>
