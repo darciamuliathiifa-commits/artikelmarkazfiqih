@@ -16,6 +16,7 @@ import { extractToc } from "@/lib/toc";
 import { extractFootnotes } from "@/lib/footnotes";
 import { AuthorCard } from "@/components/article/author-card";
 import { AuthorOtherArticles } from "@/components/article/author-other-articles";
+import { ContributorCta } from "@/components/article/contributor-cta";
 import { ShareButtons } from "@/components/article/share-buttons";
 import { articleSchema, breadcrumbSchema } from "@/lib/schema";
 import { ViewTracker } from "@/components/article/view-tracker";
@@ -293,6 +294,7 @@ export default async function ArticlePage({
       {author && (
         <>
           <AuthorCard author={author} />
+          <ContributorCta />
           <AuthorOtherArticles author={author} articles={otherArticles} />
         </>
       )}
