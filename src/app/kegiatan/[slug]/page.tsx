@@ -8,7 +8,9 @@ import { getPublishedKegiatanBySlug } from "@/db/queries/kegiatan";
 import { formatDate } from "@/lib/format";
 import { extractToc } from "@/lib/toc";
 import { extractFootnotes } from "@/lib/footnotes";
+import { addImageCaptions } from "@/lib/image-captions";
 import { breadcrumbSchema } from "@/lib/schema";
+import { ArticleToc } from "@/components/article/article-toc";
 import { ShareButtons } from "@/components/article/share-buttons";
 import { ArticleSidebar } from "@/components/home/sidebar/article-sidebar";
 
@@ -51,7 +53,8 @@ export default async function KegiatanDetailPage({
   }
 
   const { html: contentWithoutFootnotes, footnotes } = extractFootnotes(item.content);
-  const { html, toc } = extractToc(contentWithoutFootnotes);
+  const { html: contentHtml, toc } = extractToc(contentWithoutFootnotes);
+  const html = addImageCaptions(contentHtml);
 
   const headersList = await headers();
   const host = headersList.get("host") ?? "markazfiqih.com";
@@ -122,28 +125,7 @@ export default async function KegiatanDetailPage({
           />
         </div>
 
-        {toc.length > 1 && (
-          <nav
-            aria-label="Daftar isi"
-            className="mt-8 border-l-2 border-primary/30 py-1 pl-4"
-          >
-            <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-              Daftar Isi
-            </p>
-            <ol className="flex flex-col gap-1.5 text-sm">
-              {toc.map((tocItem, index) => (
-                <li key={tocItem.id}>
-                  <a
-                    href={`#${tocItem.id}`}
-                    className="text-muted-foreground hover:text-primary"
-                  >
-                    {index + 1}. {tocItem.text}
-                  </a>
-                </li>
-              ))}
-            </ol>
-          </nav>
-        )}
+        <ArticleToc items={toc} />
 
         <div
           className="article-content mt-8"

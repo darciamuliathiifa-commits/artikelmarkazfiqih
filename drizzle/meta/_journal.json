@@ -92,6 +92,13 @@
       "when": 1784815809268,
       "tag": "0012_add_ebooks_table",
       "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "7",
+      "when": 1788759129399,
+      "tag": "0013_add_references_column",
+      "breakpoints": true
     }
   ]
 }

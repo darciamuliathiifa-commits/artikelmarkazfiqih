@@ -20,6 +20,7 @@ export type QnaListItem = {
 };
 
 export type QnaDetail = QnaListItem & {
+  references: string;
   answeredByProfile: {
     slug: string;
     name: string;
@@ -74,6 +75,7 @@ export async function getQnaDetail(slug: string): Promise<QnaDetail | undefined>
 
   return {
     ...toQnaListItem(row),
+    references: row.references ?? "",
     answeredByProfile: row.answeredBy
       ? {
           slug: row.answeredBy.slug,

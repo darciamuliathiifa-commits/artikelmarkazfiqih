@@ -67,6 +67,7 @@ export const articles = pgTable("articles", {
   isPublished: boolean("is_published").notNull().default(false),
   isFeatured: boolean("is_featured").notNull().default(false),
   metaDescription: text("meta_description"),
+  references: text("references_html"),
   publishedAt: timestamp("published_at"),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
@@ -84,6 +85,7 @@ export const qna = pgTable("qna", {
     .notNull()
     .references(() => users.id),
   topicId: text("topic_id").references(() => qnaTopics.id),
+  references: text("references_html"),
   isPublished: boolean("is_published").notNull().default(false),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),

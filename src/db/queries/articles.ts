@@ -41,6 +41,7 @@ export async function createArticle(data: {
   isPublished?: boolean;
   isFeatured?: boolean;
   metaDescription?: string;
+  references?: string;
 }) {
   const slug = await generateUniqueArticleSlug(data.slug || data.title);
 
@@ -58,6 +59,7 @@ export async function createArticle(data: {
       isPublished: data.isPublished ?? false,
       isFeatured: data.isFeatured ?? false,
       metaDescription: data.metaDescription,
+      references: data.references ? sanitizeArticleContent(data.references) : null,
       publishedAt: data.isPublished ? new Date() : null,
     })
     .returning();
@@ -78,6 +80,7 @@ export async function updateArticle(
     isPublished?: boolean;
     isFeatured?: boolean;
     metaDescription?: string;
+    references?: string | null;
   }
 ) {
   const existing = await db.query.articles.findFirst({
@@ -96,6 +99,10 @@ export async function updateArticle(
         data.content !== undefined
           ? sanitizeArticleContent(data.content)
           : undefined,
+      references:
+        typeof data.references === "string"
+          ? sanitizeArticleContent(data.references)
+          : data.references,
       publishedAt: shouldSetPublishedAt ? new Date() : existing.publishedAt,
       updatedAt: new Date(),
     })

@@ -42,6 +42,7 @@ export type ArticleFormInitialValues = {
   isPublished: boolean;
   isFeatured: boolean;
   metaDescription: string;
+  references: string;
 };
 
 export function ArticleEditorForm({
@@ -69,6 +70,7 @@ export function ArticleEditorForm({
   const [tags, setTags] = useState(initialValues?.tags ?? "");
   const [thumbnailUrl, setThumbnailUrl] = useState(initialValues?.thumbnailUrl ?? "");
   const [metaDescription, setMetaDescription] = useState(initialValues?.metaDescription ?? "");
+  const [references, setReferences] = useState(initialValues?.references ?? "");
   const [isPublished, setIsPublished] = useState(initialValues?.isPublished ?? false);
   const [isFeatured, setIsFeatured] = useState(initialValues?.isFeatured ?? false);
   const [saving, setSaving] = useState(false);
@@ -98,6 +100,7 @@ export function ArticleEditorForm({
       authorId,
       thumbnailUrl: thumbnailUrl || undefined,
       metaDescription: metaDescription || undefined,
+      references: references || undefined,
       tags: tags
         .split(",")
         .map((tag) => tag.trim())
@@ -206,6 +209,20 @@ export function ArticleEditorForm({
                 content={content}
                 onChange={(html) => {
                   setContent(html);
+                  setSaved(false);
+                }}
+              />
+            </div>
+
+            <div className="flex flex-col gap-1.5">
+              <Label>Referensi (opsional)</Label>
+              <p className="text-xs text-muted-foreground">
+                Tampil di bagian akhir artikel. Kosongkan kalau tidak ada rujukan.
+              </p>
+              <RichTextEditor
+                content={references}
+                onChange={(html) => {
+                  setReferences(html);
                   setSaved(false);
                 }}
               />

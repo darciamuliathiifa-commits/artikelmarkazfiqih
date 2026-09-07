@@ -67,6 +67,8 @@ export async function POST(request: Request) {
       answer: body.answer,
       answeredById: body.answeredById,
       topicId: typeof body.topicId === "string" ? body.topicId : null,
+      references:
+        typeof body.references === "string" ? body.references.trim() || undefined : undefined,
       isPublished: body.isPublished === true,
     });
 

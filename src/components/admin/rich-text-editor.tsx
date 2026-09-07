@@ -48,7 +48,7 @@ export function RichTextEditor({
     editorProps: {
       attributes: {
         class: cn(
-          "article-content min-h-[24rem] rounded-b-xl border border-input px-3.5 py-3 outline-none",
+          "article-content max-h-[36rem] min-h-[24rem] overflow-y-auto rounded-b-xl border border-input px-3.5 py-3 outline-none",
           "focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
         ),
       },

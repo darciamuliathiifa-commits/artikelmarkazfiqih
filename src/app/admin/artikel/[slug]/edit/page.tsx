@@ -58,6 +58,7 @@ export default async function EditArticlePage({
           isPublished: article.isPublished,
           isFeatured: article.isFeatured,
           metaDescription: article.metaDescription ?? "",
+          references: article.references ?? "",
         }}
       />
     </div>

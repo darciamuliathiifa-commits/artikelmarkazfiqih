@@ -164,10 +164,18 @@
 
 @layer components {
   .article-content {
-    font-family: var(--font-reading);
-    font-size: 1.1875rem;
-    line-height: 1.85;
+    /* Amiri disertakan sebagai fallback agar teks Arab tetap memakai font Arab
+       walau penulis lupa menandainya lewat tombol "Teks Arab" di editor. */
+    font-family: var(--font-reading), var(--font-arabic), serif;
+    font-size: 1.0625rem;
+    line-height: 1.8;
     color: var(--foreground);
+  }
+  @media (min-width: 640px) {
+    .article-content {
+      font-size: 1.1875rem;
+      line-height: 1.85;
+    }
   }
   .article-content p {
     margin-block: 1.25em;
@@ -201,6 +209,7 @@
     font-family: var(--font-sans);
     font-size: 1.1em;
     font-weight: 700;
+    scroll-margin-top: 6rem;
   }
   .article-content ol {
     margin-block: 1.25em;
@@ -213,6 +222,20 @@
   .article-content img {
     margin-block: 1.75em;
     border-radius: var(--radius-lg);
+  }
+  .article-content figure {
+    margin-block: 1.75em;
+  }
+  .article-content figure img {
+    margin-block: 0;
+  }
+  .article-content figcaption {
+    margin-top: 0.65em;
+    text-align: center;
+    font-size: 0.8em;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--muted-foreground);
   }
   .article-content blockquote {
     position: relative;

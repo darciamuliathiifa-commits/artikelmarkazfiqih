@@ -70,6 +70,8 @@ export async function POST(request: Request) {
       isFeatured: body.isFeatured === true,
       metaDescription:
         typeof body.metaDescription === "string" ? body.metaDescription.trim() || undefined : undefined,
+      references:
+        typeof body.references === "string" ? body.references.trim() || undefined : undefined,
     });
 
     return NextResponse.json({ article: created }, { status: 201 });

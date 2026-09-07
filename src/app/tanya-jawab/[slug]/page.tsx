@@ -6,7 +6,9 @@ import type { Metadata } from "next";
 import { getQnaDetail, getRelatedQna } from "@/lib/data/qna";
 import { formatDate } from "@/lib/format";
 import { extractFootnotes } from "@/lib/footnotes";
+import { addImageCaptions } from "@/lib/image-captions";
 import { AuthorCard } from "@/components/article/author-card";
+import { ReferencesSection } from "@/components/article/references-section";
 import { ShareButtons } from "@/components/article/share-buttons";
 import { Badge } from "@/components/ui/badge";
 import { breadcrumbSchema, qaSchema } from "@/lib/schema";
@@ -60,7 +62,8 @@ export default async function QnaDetailPage({
   const answeredBy = qna.answeredByProfile;
   const topic = qna.topic;
   const relatedQna = await getRelatedQna(topic?.slug ?? null, qna.slug, 3);
-  const { html: answerHtml, footnotes } = extractFootnotes(qna.answer);
+  const { html: rawAnswerHtml, footnotes } = extractFootnotes(qna.answer);
+  const answerHtml = addImageCaptions(rawAnswerHtml);
   const commentRows = await getApprovedCommentsByQnaSlug(qna.slug);
   const publicComments = commentRows.map((row) => ({
     id: row.id,
@@ -195,12 +198,16 @@ export default async function QnaDetailPage({
         </div>
       )}
 
+      <ReferencesSection html={qna.references} />
+
       {answeredBy && <AuthorCard author={answeredBy} />}
+
+      <CommentSection comments={publicComments} qnaSlug={qna.slug} />
 
       {relatedQna.length > 0 && (
         <div className="mt-10 border-t border-border pt-8">
           <h2 className="relative inline-block pb-2 font-heading text-lg font-bold text-foreground after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-8 after:rounded-full after:bg-primary">
-            Tanya Jawab Terkait
+            Tanya Jawab Lainnya
           </h2>
           <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-3">
             {relatedQna.map((related, index) => (
@@ -211,8 +218,6 @@ export default async function QnaDetailPage({
           </div>
         </div>
       )}
-
-      <CommentSection comments={publicComments} qnaSlug={qna.slug} />
 
       <div className="mt-10 lg:hidden">
         <AdBanner />

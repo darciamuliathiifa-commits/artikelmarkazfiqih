@@ -106,6 +106,7 @@ export async function PATCH(
   if (typeof body.isPublished === "boolean") data.isPublished = body.isPublished;
   if (typeof body.isFeatured === "boolean") data.isFeatured = body.isFeatured;
   if (typeof body.metaDescription === "string") data.metaDescription = body.metaDescription.trim() || null;
+  if (typeof body.references === "string") data.references = body.references.trim() || null;
 
   const updated = await updateArticle(slug, data);
 

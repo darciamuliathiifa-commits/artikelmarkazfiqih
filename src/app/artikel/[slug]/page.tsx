@@ -14,6 +14,9 @@ import {
 import { estimateReadingTime, formatDate, formatViews } from "@/lib/format";
 import { extractToc } from "@/lib/toc";
 import { extractFootnotes } from "@/lib/footnotes";
+import { addImageCaptions } from "@/lib/image-captions";
+import { ArticleToc } from "@/components/article/article-toc";
+import { ReferencesSection } from "@/components/article/references-section";
 import { AuthorCard } from "@/components/article/author-card";
 import { AuthorOtherArticles } from "@/components/article/author-other-articles";
 import { ContributorCta } from "@/components/article/contributor-cta";
@@ -76,7 +79,8 @@ export default async function ArticlePage({
   const { html: contentWithoutFootnotes, footnotes } = extractFootnotes(
     article.content
   );
-  const { html, toc } = extractToc(contentWithoutFootnotes);
+  const { html: contentHtml, toc } = extractToc(contentWithoutFootnotes);
+  const html = addImageCaptions(contentHtml);
   const readingTime = estimateReadingTime(article.content);
   const otherArticles = author
     ? await getOtherArticlesByAuthor(author.slug, article.slug, 4)
@@ -181,12 +185,6 @@ export default async function ArticlePage({
         {article.title}
       </h1>
 
-      {article.excerpt && (
-        <p className="mt-4 font-reading text-lg leading-snug text-muted-foreground sm:text-xl">
-          {article.excerpt}
-        </p>
-      )}
-
       <div className="mt-6 flex flex-wrap items-center justify-between gap-4 border-y border-border py-4">
         {author ? (
           <Link
@@ -235,28 +233,7 @@ export default async function ArticlePage({
         />
       </div>
 
-      {toc.length > 1 && (
-        <nav
-          aria-label="Daftar isi"
-          className="mt-8 border-l-2 border-primary/30 py-1 pl-4"
-        >
-          <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-            Daftar Isi
-          </p>
-          <ol className="flex flex-col gap-1.5 text-sm">
-            {toc.map((item, index) => (
-              <li key={item.id}>
-                <a
-                  href={`#${item.id}`}
-                  className="text-muted-foreground hover:text-primary"
-                >
-                  {index + 1}. {item.text}
-                </a>
-              </li>
-            ))}
-          </ol>
-        </nav>
-      )}
+      <ArticleToc items={toc} />
 
       <div
         className="article-content mt-8"
@@ -280,6 +257,8 @@ export default async function ArticlePage({
           </ol>
         </div>
       )}
+
+      <ReferencesSection html={article.references} />
 
       {article.tags.length > 0 && (
         <div className="mt-8 flex flex-wrap gap-2 border-t border-border pt-6">

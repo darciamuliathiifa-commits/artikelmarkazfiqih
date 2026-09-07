@@ -75,6 +75,7 @@ export async function PATCH(
   if (typeof body.question === "string") data.question = body.question;
   if (typeof body.answer === "string") data.answer = body.answer;
   if (typeof body.answeredById === "string") data.answeredById = body.answeredById;
+  if (typeof body.references === "string") data.references = body.references.trim() || null;
   if (typeof body.topicId === "string" || body.topicId === null) {
     data.topicId = body.topicId;
   }

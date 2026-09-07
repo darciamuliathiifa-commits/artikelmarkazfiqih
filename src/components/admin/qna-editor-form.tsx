@@ -29,6 +29,7 @@ export type QnaFormInitialValues = {
   answer: string;
   answeredById: string;
   topicId: string;
+  references: string;
   isPublished: boolean;
 };
 
@@ -53,6 +54,7 @@ export function QnaEditorForm({
   );
   const [topicList, setTopicList] = useState(topics);
   const [topicId, setTopicId] = useState(initialValues?.topicId || NO_TOPIC);
+  const [references, setReferences] = useState(initialValues?.references ?? "");
   const [showAddTopic, setShowAddTopic] = useState(false);
   const [newTopicName, setNewTopicName] = useState("");
   const [addingTopic, setAddingTopic] = useState(false);
@@ -112,6 +114,7 @@ export function QnaEditorForm({
       answer,
       answeredById,
       topicId: topicId === NO_TOPIC ? null : topicId,
+      references: references || undefined,
       isPublished,
     };
 
@@ -204,6 +207,20 @@ export function QnaEditorForm({
           content={answer}
           onChange={(html) => {
             setAnswer(html);
+            setSaved(false);
+          }}
+        />
+      </div>
+
+      <div className="flex flex-col gap-1.5">
+        <Label>Referensi (opsional)</Label>
+        <p className="text-xs text-muted-foreground">
+          Tampil di bagian akhir tanya jawab. Kosongkan kalau tidak ada rujukan.
+        </p>
+        <RichTextEditor
+          content={references}
+          onChange={(html) => {
+            setReferences(html);
             setSaved(false);
           }}
         />

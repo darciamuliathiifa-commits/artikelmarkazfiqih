@@ -29,6 +29,7 @@ export type ArticleDetail = ArticleListItem & {
   content: string;
   tags: string[];
   metaDescription: string;
+  references: string;
   authorProfile: {
     slug: string;
     name: string;
@@ -118,6 +119,7 @@ export async function getArticleBySlug(
     content: row.content,
     tags: row.tags,
     metaDescription: row.metaDescription || row.excerpt,
+    references: row.references ?? "",
     authorProfile: row.author
       ? {
           slug: row.author.slug,

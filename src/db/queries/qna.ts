@@ -36,6 +36,7 @@ export async function createQna(data: {
   answer: string;
   answeredById: string;
   topicId?: string | null;
+  references?: string;
   isPublished?: boolean;
 }) {
   const slug = await generateUniqueQnaSlug(data.slug || data.title);
@@ -49,6 +50,7 @@ export async function createQna(data: {
       answer: sanitizeArticleContent(data.answer),
       answeredById: data.answeredById,
       topicId: data.topicId ?? null,
+      references: data.references ? sanitizeArticleContent(data.references) : null,
       isPublished: data.isPublished ?? false,
     })
     .returning();
@@ -64,6 +66,7 @@ export async function updateQna(
     answer?: string;
     answeredById?: string;
     topicId?: string | null;
+    references?: string | null;
     isPublished?: boolean;
   }
 ) {
@@ -72,6 +75,10 @@ export async function updateQna(
     .set({
       ...data,
       answer: data.answer !== undefined ? sanitizeArticleContent(data.answer) : undefined,
+      references:
+        typeof data.references === "string"
+          ? sanitizeArticleContent(data.references)
+          : data.references,
       updatedAt: new Date(),
     })
     .where(eq(qna.slug, slug))

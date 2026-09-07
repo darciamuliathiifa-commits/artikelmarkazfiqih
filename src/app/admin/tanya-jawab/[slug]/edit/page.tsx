@@ -56,6 +56,7 @@ export default async function EditQnaPage({
           answer: item.answer,
           answeredById: item.answeredById,
           topicId: item.topicId ?? "",
+          references: item.references ?? "",
           isPublished: item.isPublished,
         }}
       />
