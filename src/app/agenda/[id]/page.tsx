@@ -108,7 +108,7 @@ export default async function AgendaDetailPage({
         )}
 
         {item.description && (
-          <p className="mt-6 whitespace-pre-line text-base leading-relaxed text-foreground">
+          <p dir="auto" className="mt-6 whitespace-pre-line text-base leading-relaxed text-foreground">
             {item.description}
           </p>
         )}

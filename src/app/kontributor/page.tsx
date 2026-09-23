@@ -21,8 +21,18 @@ export default async function ContributorsPage() {
           <h1 className="mb-2 font-heading text-2xl font-bold text-foreground">
             Kontributor
           </h1>
-          <p className="mb-8 text-sm text-muted-foreground">
+          <p className="text-sm text-muted-foreground">
             Para penulis dan kontributor Markaz Fiqih.
+          </p>
+          <p className="mb-8 mt-1 text-sm text-muted-foreground">
+            Ingin jadi kontributor kami?{" "}
+            <Link
+              href="/kontributor/pengajuan"
+              className="font-medium text-primary hover:underline"
+            >
+              Klik di sini
+            </Link>
+            .
           </p>
 
           {authors.length === 0 ? (

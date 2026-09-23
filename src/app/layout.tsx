@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Lora, Amiri } from "next/font/google";
+import { Carlito, Amiri } from "next/font/google";
 import "./globals.css";
 import { SiteChrome } from "@/components/layout/site-chrome";
 import { getSiteChromeData } from "@/lib/data/site";
@@ -13,15 +13,12 @@ import { organizationSchema } from "@/lib/schema";
 // reflects current data.
 export const dynamic = "force-dynamic";
 
-const fontSans = Plus_Jakarta_Sans({
+// Carlito: kembaran metrik Calibri yang bebas dipakai di web (Calibri sendiri
+// berlisensi Microsoft). Dipakai untuk seluruh teks Latin, termasuk isi artikel.
+const fontSans = Carlito({
   variable: "--font-sans",
   subsets: ["latin"],
-  display: "swap",
-});
-
-const fontReading = Lora({
-  variable: "--font-reading",
-  subsets: ["latin"],
+  weight: ["400", "700"],
   display: "swap",
 });
 
@@ -63,7 +60,7 @@ export default async function RootLayout({
     <html
       lang="id"
       suppressHydrationWarning
-      className={`${fontSans.variable} ${fontReading.variable} ${fontArabic.variable} h-full antialiased`}
+      className={`${fontSans.variable} ${fontArabic.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-background text-foreground">
         <script

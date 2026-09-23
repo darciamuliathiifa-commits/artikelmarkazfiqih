@@ -24,6 +24,8 @@ import {
   AlignLeft,
   AlignCenter,
   AlignRight,
+  PilcrowLeft,
+  PilcrowRight,
   SearchCode,
 } from "lucide-react";
 
@@ -109,6 +111,7 @@ export function ArticleEditorToolbar({
     alignLeft: editor.isActive({ textAlign: "left" }),
     alignCenter: editor.isActive({ textAlign: "center" }),
     alignRight: editor.isActive({ textAlign: "right" }),
+    rtl: editor.isActive({ dir: "rtl" }),
     canUndo: editor.can().undo(),
     canRedo: editor.can().redo(),
   };
@@ -218,6 +221,20 @@ export function ArticleEditorToolbar({
         onClick={() => editor.chain().focus().setTextAlign("right").run()}
       >
         <AlignRight className="size-4" />
+      </ToolbarButton>
+      <ToolbarButton
+        label="Arah Teks Kiri ke Kanan"
+        active={!state.rtl}
+        onClick={() => editor.chain().focus().setBlockDirection(null).run()}
+      >
+        <PilcrowRight className="size-4" />
+      </ToolbarButton>
+      <ToolbarButton
+        label="Arah Teks Kanan ke Kiri"
+        active={state.rtl}
+        onClick={() => editor.chain().focus().setBlockDirection("rtl").run()}
+      >
+        <PilcrowLeft className="size-4" />
       </ToolbarButton>
 
       <Separator orientation="vertical" className="mx-1 h-5" />

@@ -1,4 +1,4 @@
-import { Mark, Node, mergeAttributes } from "@tiptap/core";
+import { Extension, Mark, Node, mergeAttributes } from "@tiptap/core";
 
 export type CalloutVariant = "info" | "catatan" | "peringatan";
 
@@ -13,6 +13,9 @@ declare module "@tiptap/core" {
     };
     footnote: {
       insertFootnote: (attributes: { text: string }) => ReturnType;
+    };
+    blockDirection: {
+      setBlockDirection: (direction: "rtl" | null) => ReturnType;
     };
   }
 }
@@ -128,6 +131,44 @@ export const Footnote = Node.create({
         (attributes) =>
         ({ commands }) => {
           return commands.insertContent({ type: this.name, attrs: attributes });
+        },
+    };
+  },
+});
+
+const DIRECTION_TYPES = ["paragraph", "heading", "blockquote", "listItem"];
+
+// Arah teks per blok, seperti tombol "kiri ke kanan / kanan ke kiri" di Word.
+// Hanya "rtl" yang disimpan; blok tanpa atribut dir dianggap kiri ke kanan.
+export const BlockDirection = Extension.create({
+  name: "blockDirection",
+
+  addGlobalAttributes() {
+    return [
+      {
+        types: DIRECTION_TYPES,
+        attributes: {
+          dir: {
+            default: null,
+            parseHTML: (element) =>
+              element.getAttribute("dir") === "rtl" ? "rtl" : null,
+            renderHTML: (attributes) =>
+              attributes.dir ? { dir: attributes.dir } : {},
+          },
+        },
+      },
+    ];
+  },
+
+  addCommands() {
+    return {
+      setBlockDirection:
+        (direction) =>
+        ({ commands }) => {
+          DIRECTION_TYPES.forEach((type) =>
+            commands.updateAttributes(type, { dir: direction })
+          );
+          return true;
         },
     };
   },

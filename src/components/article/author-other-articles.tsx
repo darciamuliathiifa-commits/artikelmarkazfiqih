@@ -4,7 +4,6 @@ import Image from "next/image";
 import type { ArticleListItem } from "@/lib/data/articles";
 import type { AuthorProfile } from "@/lib/data/authors";
 import { formatDate } from "@/lib/format";
-import { Reveal } from "@/components/ui/reveal";
 
 export function AuthorOtherArticles({
   author,
@@ -23,8 +22,8 @@ export function AuthorOtherArticles({
         Tulisan Lain dari {author.name}
       </p>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {articles.map((article, index) => (
-          <Reveal key={article.slug} delay={Math.min(index * 60, 240)}>
+        {articles.map((article) => (
+          <div key={article.slug}>
           <Link
             href={`/artikel/${article.slug}`}
             className="group flex gap-3"
@@ -52,7 +51,7 @@ export function AuthorOtherArticles({
               </span>
             </div>
           </Link>
-          </Reveal>
+          </div>
         ))}
       </div>
     </div>

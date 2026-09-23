@@ -3,13 +3,12 @@ import Image from "next/image";
 
 import type { ArticleListItem } from "@/lib/data/articles";
 import { formatDate } from "@/lib/format";
-import { Reveal } from "@/components/ui/reveal";
 
 export function ArticleListRow({ article }: { article: ArticleListItem }) {
   const { author, category } = article;
 
   return (
-    <Reveal className="border-b border-border py-6 first:pt-0 last:border-b-0">
+    <div className="border-b border-border py-6 first:pt-0 last:border-b-0">
     <article className="flex items-start justify-between gap-6">
       <div className="flex min-w-0 flex-1 flex-col gap-2">
         {author && (
@@ -64,6 +63,6 @@ export function ArticleListRow({ article }: { article: ArticleListItem }) {
         />
       </Link>
     </article>
-    </Reveal>
+    </div>
   );
 }

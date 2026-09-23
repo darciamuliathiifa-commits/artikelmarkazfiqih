@@ -3,13 +3,12 @@ import Image from "next/image";
 
 import type { ArticleListItem } from "@/lib/data/articles";
 import { formatDate } from "@/lib/format";
-import { Reveal } from "@/components/ui/reveal";
 
 export function BreakingNewsList({ articles }: { articles: ArticleListItem[] }) {
   return (
     <div className="flex flex-col gap-2.5">
-      {articles.map((article, index) => (
-        <Reveal key={article.slug} delay={Math.min(index * 60, 300)}>
+      {articles.map((article) => (
+        <div key={article.slug}>
         <article
           className="group flex gap-4 rounded-2xl border border-border p-3 transition-colors hover:border-primary/40"
         >
@@ -51,7 +50,7 @@ export function BreakingNewsList({ articles }: { articles: ArticleListItem[] }) 
             </div>
           </div>
         </article>
-        </Reveal>
+        </div>
       ))}
     </div>
   );

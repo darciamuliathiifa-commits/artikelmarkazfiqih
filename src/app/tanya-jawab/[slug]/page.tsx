@@ -17,7 +17,6 @@ import { getApprovedCommentsByQnaSlug } from "@/db/queries/comments";
 import { CommentSection } from "@/components/comments/comment-section";
 import { AdBanner } from "@/components/content/ad-banner";
 import { ArticleSidebar } from "@/components/home/sidebar/article-sidebar";
-import { Reveal } from "@/components/ui/reveal";
 
 export async function generateMetadata({
   params,
@@ -210,10 +209,10 @@ export default async function QnaDetailPage({
             Tanya Jawab Lainnya
           </h2>
           <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-3">
-            {relatedQna.map((related, index) => (
-              <Reveal key={related.slug} delay={Math.min(index * 60, 240)}>
+            {relatedQna.map((related) => (
+              <div key={related.slug}>
                 <QnaCard qna={related} />
-              </Reveal>
+              </div>
             ))}
           </div>
         </div>

@@ -63,7 +63,7 @@ export const authors: Author[] = [
   {
     slug: "ustzh-muthiah-fairuzi",
     name: "Ustzh. Muthiah Fairuzi, Lc",
-    avatarUrl: "/images/avatar-placeholder-red.png",
+    avatarUrl: "/images/avatar-placeholder.png",
     bio: "Kontributor kajian fiqih wanita dan kisah-kisah teladan salafus shalih.",
     longBio:
       "Ustzh. Muthiah Fairuzi, Lc. adalah alumni Ma'had Aly dengan fokus kajian fiqih wanita dan sirah. Beliau dikenal aktif menulis kisah-kisah teladan dari kalangan salafus shalih serta membahas doa-doa yang diajarkan dalam Al-Qur'an dan Sunnah. Tulisan-tulisannya banyak digunakan sebagai bahan kajian di berbagai majelis taklim wanita.",

@@ -28,7 +28,6 @@ import { getApprovedCommentsByArticleSlug } from "@/db/queries/comments";
 import { CommentSection } from "@/components/comments/comment-section";
 import { AdBanner } from "@/components/content/ad-banner";
 import { ArticleSidebar } from "@/components/home/sidebar/article-sidebar";
-import { Reveal } from "@/components/ui/reveal";
 
 export async function generateMetadata({
   params,
@@ -181,7 +180,7 @@ export default async function ArticlePage({
         </Link>
       )}
 
-      <h1 className="mt-3 font-reading text-3xl font-bold leading-[1.15] tracking-tight text-foreground sm:text-4xl md:text-[2.75rem]">
+      <h1 className="mt-3 font-reading text-2xl font-bold leading-[1.15] tracking-tight text-foreground sm:text-4xl md:text-[2.75rem]">
         {article.title}
       </h1>
 
@@ -284,10 +283,10 @@ export default async function ArticlePage({
             Artikel Terkait
           </h2>
           <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
-            {relatedArticles.map((related, index) => (
-              <Reveal key={related.slug} delay={Math.min(index * 60, 240)}>
+            {relatedArticles.map((related) => (
+              <div key={related.slug}>
                 <ArticleCard article={related} />
-              </Reveal>
+              </div>
             ))}
           </div>
         </div>

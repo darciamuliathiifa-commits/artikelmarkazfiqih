@@ -9,7 +9,9 @@ import {
 } from "@/db/queries/articles";
 
 export const FALLBACK_THUMBNAIL = "/images/banner-pattern.webp";
-export const FALLBACK_AVATAR = "/images/avatar-placeholder-red.png";
+// avatar-placeholder-red.png dipertahankan (isinya sama) karena path lama itu
+// sudah tersimpan di kolom avatarUrl kontributor hasil seed.
+export const FALLBACK_AVATAR = "/images/avatar-placeholder.png";
 
 export type ArticleListItem = {
   slug: string;

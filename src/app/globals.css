@@ -10,7 +10,7 @@
   --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-sans);
-  --font-reading: var(--font-reading);
+  --font-reading: var(--font-sans);
   --font-arabic: var(--font-arabic-family);
   --color-gold: var(--gold);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -58,7 +58,7 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: #a31f2c;
+  --primary: #ad1313;
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -69,7 +69,7 @@
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
-  --ring: #a31f2c;
+  --ring: #ad1313;
   --gold: #d4af37;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
@@ -94,7 +94,7 @@
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: #a31f2c;
+  --primary: #ad1313;
   --primary-foreground: oklch(0.985 0 0);
   --gold: #d4af37;
   --secondary: oklch(0.269 0 0);
@@ -139,26 +139,9 @@
     line-height: 2.25;
     font-size: 1.35em;
   }
-
-  .page-transition {
-    animation: page-fade-in 280ms ease-out;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .page-transition {
-      animation: none;
-    }
-  }
-}
-
-@keyframes page-fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  /* Di dalam blok kanan-ke-kiri ukurannya sudah dibesarkan, jangan dobel. */
+  [dir="rtl"] .font-arabic {
+    font-size: 1em;
   }
 }
 
@@ -166,7 +149,7 @@
   .article-content {
     /* Amiri disertakan sebagai fallback agar teks Arab tetap memakai font Arab
        walau penulis lupa menandainya lewat tombol "Teks Arab" di editor. */
-    font-family: var(--font-reading), var(--font-arabic), serif;
+    font-family: var(--font-sans), var(--font-arabic), sans-serif;
     font-size: 1.0625rem;
     line-height: 1.8;
     color: var(--foreground);
@@ -179,6 +162,15 @@
   }
   .article-content p {
     margin-block: 1.25em;
+  }
+  /* Blok yang diberi arah kanan-ke-kiri di editor diperlakukan sebagai teks Arab. */
+  .article-content p[dir="rtl"] {
+    font-family: var(--font-arabic), serif;
+    font-size: 1.3em;
+    line-height: 2;
+  }
+  .article-content :is(h2, h3, h4)[dir="rtl"] {
+    font-family: var(--font-arabic), serif;
   }
   .article-content h2 {
     margin-block: 1.75em 0.75em;
@@ -244,7 +236,6 @@
     border-inline-start: 3px solid var(--gold);
     border-radius: var(--radius-lg);
     background-color: color-mix(in oklch, var(--primary), transparent 95%);
-    font-family: var(--font-reading);
     font-style: italic;
     color: var(--foreground);
   }

@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import type { QnaListItem } from "@/lib/data/qna";
 import { Pagination } from "@/components/ui/pagination";
 import { QnaCard } from "@/components/tanya-jawab/qna-card";
-import { Reveal } from "@/components/ui/reveal";
 
 export function QnaFilterView({
   initialQna,
@@ -102,10 +101,10 @@ export function QnaFilterView({
           isPending ? "opacity-50" : ""
         }`}
       >
-        {items.map((qna, index) => (
-          <Reveal key={qna.slug} delay={Math.min(index * 60, 240)}>
+        {items.map((qna) => (
+          <div key={qna.slug}>
             <QnaCard qna={qna} />
-          </Reveal>
+          </div>
         ))}
       </div>
 

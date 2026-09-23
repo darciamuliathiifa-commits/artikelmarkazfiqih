@@ -99,7 +99,7 @@ export default async function KegiatanDetailPage({
           </ol>
         </nav>
 
-        <h1 className="font-reading text-3xl font-bold leading-[1.15] tracking-tight text-foreground sm:text-4xl">
+        <h1 className="font-reading text-2xl font-bold leading-[1.15] tracking-tight text-foreground sm:text-4xl">
           {item.title}
         </h1>
 

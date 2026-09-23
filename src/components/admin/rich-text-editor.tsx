@@ -12,7 +12,12 @@ import { MediaGalleryDialog } from "@/components/admin/media-gallery-dialog";
 import { LinkDialog } from "@/components/admin/link-dialog";
 import { FootnoteDialog } from "@/components/admin/footnote-dialog";
 import { FindReplaceDialog } from "@/components/admin/find-replace-dialog";
-import { Callout, ArabicText, Footnote } from "@/lib/tiptap-extensions";
+import {
+  Callout,
+  ArabicText,
+  Footnote,
+  BlockDirection,
+} from "@/lib/tiptap-extensions";
 import { cn } from "@/lib/utils";
 
 export function RichTextEditor({
@@ -43,6 +48,7 @@ export function RichTextEditor({
       Callout,
       ArabicText,
       Footnote,
+      BlockDirection,
     ],
     content,
     editorProps: {

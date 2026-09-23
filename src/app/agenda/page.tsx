@@ -58,7 +58,7 @@ function AgendaCard({ item }: { item: Agenda }) {
           </span>
         )}
         {item.description && (
-          <p className="mt-1 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
+          <p dir="auto" className="mt-1 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
             {item.description}
           </p>
         )}

@@ -27,7 +27,7 @@ export function SiteChrome({
         kelasUrl={data.kelasUrl}
         tagline={data.footer.tagline}
       />
-      <main key={pathname} className="page-transition flex-1">
+      <main className="flex-1">
         {children}
       </main>
       <SiteFooter footer={data.footer} />

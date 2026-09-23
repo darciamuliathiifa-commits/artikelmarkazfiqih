@@ -188,6 +188,7 @@ export function AgendaEditorForm({
         <Label htmlFor="description">Deskripsi (opsional)</Label>
         <Textarea
           id="description"
+          dir="auto"
           value={description}
           onChange={(event) => {
             setDescription(event.target.value);
