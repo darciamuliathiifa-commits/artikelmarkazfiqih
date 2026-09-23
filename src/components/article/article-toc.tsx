@@ -1,6 +1,13 @@
 import type { TocItem } from "@/lib/toc";
+import { cn } from "@/lib/utils";
 
-export function ArticleToc({ items }: { items: TocItem[] }) {
+export function ArticleToc({
+  items,
+  className,
+}: {
+  items: TocItem[];
+  className?: string;
+}) {
   if (items.length < 2) return null;
 
   // Hanya heading level 2 yang dinomori; level 3 tampil menjorok tanpa nomor.
@@ -13,7 +20,7 @@ export function ArticleToc({ items }: { items: TocItem[] }) {
   return (
     <nav
       aria-label="Daftar isi"
-      className="mt-8 border-l-2 border-primary/30 py-1 pl-4"
+      className={cn("mt-8 border-l-2 border-primary/30 py-1 pl-4", className)}
     >
       <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
         Daftar Isi

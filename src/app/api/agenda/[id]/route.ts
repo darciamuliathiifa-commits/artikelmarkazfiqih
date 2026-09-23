@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 
 import { deleteAgenda, getAgendaById, updateAgenda } from "@/db/queries/agenda";
 import { requireAdminSession } from "@/lib/require-admin-session";
+import { isEmptyHtml } from "@/lib/rich-text";
 
 const VALID_TYPES = ["rutin", "khusus"];
 
@@ -56,7 +57,9 @@ export async function PATCH(
     data.type = body.type;
   }
   if (typeof body.description === "string") {
-    data.description = body.description.trim() || null;
+    data.description = isEmptyHtml(body.description)
+      ? null
+      : body.description.trim();
   }
   if (typeof body.pengajar === "string") {
     data.pengajar = body.pengajar.trim() || null;

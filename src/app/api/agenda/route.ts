@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 
 import { createAgenda, getAllAgendaForAdmin } from "@/db/queries/agenda";
 import { requireAdminSession } from "@/lib/require-admin-session";
+import { isEmptyHtml } from "@/lib/rich-text";
 
 const VALID_TYPES = ["rutin", "khusus"];
 
@@ -36,7 +37,9 @@ export async function POST(request: Request) {
     type,
     scheduleText,
     description:
-      typeof body?.description === "string" ? body.description.trim() || null : null,
+      typeof body?.description === "string" && !isEmptyHtml(body.description)
+        ? body.description.trim()
+        : null,
     pengajar:
       typeof body?.pengajar === "string" ? body.pengajar.trim() || null : null,
     imageUrl:

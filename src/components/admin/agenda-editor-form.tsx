@@ -6,7 +6,6 @@ import NextImage from "next/image";
 import { CheckCircle2, Upload, X, ImageIcon } from "lucide-react";
 
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
@@ -18,6 +17,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { MediaGalleryDialog } from "@/components/admin/media-gallery-dialog";
+import { RichTextEditor } from "@/components/admin/rich-text-editor";
+import { plainTextToHtml } from "@/lib/rich-text";
 
 const TYPE_OPTIONS = [
   { value: "rutin", label: "Jadwal Rutin" },
@@ -52,7 +53,7 @@ export function AgendaEditorForm({
   );
   const [pengajar, setPengajar] = useState(initialValues?.pengajar ?? "");
   const [description, setDescription] = useState(
-    initialValues?.description ?? ""
+    plainTextToHtml(initialValues?.description ?? "")
   );
   const [imageUrl, setImageUrl] = useState(initialValues?.imageUrl ?? "");
   const [linkUrl, setLinkUrl] = useState(initialValues?.linkUrl ?? "");
@@ -185,17 +186,13 @@ export function AgendaEditorForm({
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <Label htmlFor="description">Deskripsi (opsional)</Label>
-        <Textarea
-          id="description"
-          dir="auto"
-          value={description}
-          onChange={(event) => {
-            setDescription(event.target.value);
+        <Label>Deskripsi (opsional)</Label>
+        <RichTextEditor
+          content={description}
+          onChange={(html) => {
+            setDescription(html);
             setSaved(false);
           }}
-          rows={4}
-          placeholder="Deskripsi singkat agenda"
         />
       </div>
 

@@ -1,9 +1,11 @@
+import { isEmptyHtml } from "@/lib/rich-text";
+
 /**
  * Kolom referensi di akhir artikel dan tanya jawab.
  * Langsung tampil tanpa perlu diklik, dan hilang sendiri kalau kosong.
  */
 export function ReferencesSection({ html }: { html: string }) {
-  if (!html.trim()) return null;
+  if (isEmptyHtml(html)) return null;
 
   return (
     <section className="mt-10 rounded-xl border border-border bg-muted/30 px-5 py-4">

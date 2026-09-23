@@ -5,6 +5,7 @@ import { CalendarDays, User, ExternalLink, Play } from "lucide-react";
 
 import { getPublishedAgenda } from "@/db/queries/agenda";
 import { getYoutubeEmbedUrl } from "@/lib/youtube";
+import { htmlToPlainText } from "@/lib/rich-text";
 import { Button } from "@/components/ui/button";
 import type { Agenda } from "@/db/schema";
 import { ArticleSidebar } from "@/components/home/sidebar/article-sidebar";
@@ -59,7 +60,7 @@ function AgendaCard({ item }: { item: Agenda }) {
         )}
         {item.description && (
           <p dir="auto" className="mt-1 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
-            {item.description}
+            {htmlToPlainText(item.description)}
           </p>
         )}
         <div className="mt-auto flex flex-wrap items-center gap-2 pt-1">

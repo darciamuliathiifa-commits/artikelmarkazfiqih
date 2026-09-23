@@ -150,9 +150,12 @@
     /* Amiri disertakan sebagai fallback agar teks Arab tetap memakai font Arab
        walau penulis lupa menandainya lewat tombol "Teks Arab" di editor. */
     font-family: var(--font-sans), var(--font-arabic), sans-serif;
-    font-size: 1.0625rem;
-    line-height: 1.8;
+    font-size: 1rem;
+    line-height: 1.75;
     color: var(--foreground);
+  }
+  .article-content > :first-child {
+    margin-top: 0;
   }
   @media (min-width: 640px) {
     .article-content {
@@ -177,6 +180,7 @@
     font-family: var(--font-sans);
     font-size: 1.25em;
     font-weight: 700;
+    line-height: 1.35;
     scroll-margin-top: 6rem;
   }
   .article-content ul {
@@ -201,6 +205,7 @@
     font-family: var(--font-sans);
     font-size: 1.1em;
     font-weight: 700;
+    line-height: 1.35;
     scroll-margin-top: 6rem;
   }
   .article-content ol {

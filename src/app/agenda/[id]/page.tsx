@@ -6,6 +6,8 @@ import { CalendarDays, User, ExternalLink } from "lucide-react";
 
 import { getPublishedAgendaById } from "@/db/queries/agenda";
 import { getYoutubeEmbedUrl } from "@/lib/youtube";
+import { sanitizeArticleContent } from "@/lib/sanitize-html";
+import { htmlToPlainText, plainTextToHtml } from "@/lib/rich-text";
 import { Button } from "@/components/ui/button";
 import { ArticleSidebar } from "@/components/home/sidebar/article-sidebar";
 
@@ -23,7 +25,9 @@ export async function generateMetadata({
 
   return {
     title: item.title,
-    description: item.description ?? undefined,
+    description: item.description
+      ? htmlToPlainText(item.description).slice(0, 160)
+      : undefined,
   };
 }
 
@@ -108,9 +112,12 @@ export default async function AgendaDetailPage({
         )}
 
         {item.description && (
-          <p dir="auto" className="mt-6 whitespace-pre-line text-base leading-relaxed text-foreground">
-            {item.description}
-          </p>
+          <div
+            className="article-content mt-6"
+            dangerouslySetInnerHTML={{
+              __html: sanitizeArticleContent(plainTextToHtml(item.description)),
+            }}
+          />
         )}
 
         {item.linkUrl && (
