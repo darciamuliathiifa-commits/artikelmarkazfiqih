@@ -168,6 +168,14 @@ export function SiteHeader({
                       E-Book
                     </SheetClose>
 
+                    <SheetClose
+                      nativeButton={false}
+                      render={<Link href="/aplikasi" />}
+                      className="rounded-lg px-3 py-2 text-sm font-semibold text-primary hover:bg-muted"
+                    >
+                      Aplikasi
+                    </SheetClose>
+
                     {mainLinks.slice(2).map((link) => (
                       <SheetClose
                         key={link.href}
@@ -301,6 +309,10 @@ export function SiteHeader({
 
           <Link href="/e-book" className={navLinkClass(pathname === "/e-book")}>
             E-Book
+          </Link>
+
+          <Link href="/aplikasi" className={navLinkClass(pathname === "/aplikasi")}>
+            Aplikasi
           </Link>
 
           <Link

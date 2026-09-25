@@ -37,6 +37,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${SITE_URL}/agenda`, changeFrequency: "weekly", priority: 0.6 },
     { url: `${SITE_URL}/kegiatan`, changeFrequency: "weekly", priority: 0.6 },
     { url: `${SITE_URL}/e-book`, changeFrequency: "weekly", priority: 0.5 },
+    { url: `${SITE_URL}/aplikasi`, changeFrequency: "yearly", priority: 0.3 },
     { url: `${SITE_URL}/kontributor`, changeFrequency: "weekly", priority: 0.6 },
     { url: `${SITE_URL}/kirim-pertanyaan`, changeFrequency: "monthly", priority: 0.4 },
     { url: `${SITE_URL}/tentang-kami`, changeFrequency: "monthly", priority: 0.3 },
