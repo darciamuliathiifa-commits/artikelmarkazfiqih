@@ -4,10 +4,36 @@ import { ArrowLeft } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { ArticleSidebar } from "@/components/home/sidebar/article-sidebar";
+import { CopyableTemplate } from "@/components/kontributor/copyable-template";
 
-const SUBMISSION_EMAIL = "kontakmarkazfiqih@gmail.com";
+const SUBMISSION_EMAIL = "contactmarkazfiqih@gmail.com";
 const SUBMISSION_SUBJECT =
   "Pengajuan Kontributor – [Nama Penulis] – [Judul Tulisan]";
+const SUBMISSION_TEMPLATE = `Assalamu’alaikum warahmatullahi wabarakatuh.
+
+Saya bermaksud mengajukan tulisan untuk menjadi kontributor Markaz Fiqih.
+
+Data Penulis
+Nama lengkap:
+Nama untuk byline:
+No. WhatsApp:
+Alamat:
+No. rekening:
+Nama pemilik rekening:
+Profil singkat (1–2 kalimat):
+Profil lengkap (pendidikan, pengalaman, bidang keilmuan, dan karya yang relevan):
+Judul tulisan:
+Topik/bidang:
+
+Lampiran:
+- File tulisan (.docx)
+- Foto penulis
+
+Demikian pengajuan ini saya sampaikan. Saya siap mengikuti proses kurasi dan penyuntingan yang dilakukan oleh redaksi Markaz Fiqih.
+
+Terima kasih atas perhatian dan waktunya.
+
+Wassalamu’alaikum warahmatullahi wabarakatuh.`;
 
 export const metadata: Metadata = {
   title: "Pengajuan Kontributor",
@@ -18,7 +44,7 @@ export const metadata: Metadata = {
 export default function ContributorSubmissionPage() {
   const mailtoHref = `mailto:${SUBMISSION_EMAIL}?subject=${encodeURIComponent(
     SUBMISSION_SUBJECT
-  )}`;
+  )}&body=${encodeURIComponent(SUBMISSION_TEMPLATE)}`;
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-10">
@@ -39,16 +65,7 @@ export default function ContributorSubmissionPage() {
             <h2>Ketentuan Tulisan</h2>
             <ul>
               <li>Karya sendiri dan bukan plagiarisme.</li>
-              <li>
-                Memiliki rujukan yang jelas dan dapat dipertanggungjawabkan.
-              </li>
-              <li>
-                Pembahasan fiqih mengutamakan rujukan dan metodologi madzhab
-                Syafi‘i.
-              </li>
-              <li>
-                Perbedaan pendapat disampaikan secara objektif dan proporsional.
-              </li>
+              <li>Bereferensi.</li>
               <li>
                 Menggunakan bahasa Indonesia yang baik, jelas, dan mudah
                 dipahami.
@@ -62,8 +79,8 @@ export default function ContributorSubmissionPage() {
                 aslinya.
               </li>
               <li>
-                AI boleh digunakan sebagai alat bantu, tetapi isi menjadi
-                tanggung jawab penulis. Rujukan harus valid dari sumber aslinya.
+                AI boleh digunakan hanya sebagai alat bantu, bukan mengganti
+                peran penulis.
               </li>
             </ul>
 
@@ -86,12 +103,42 @@ export default function ContributorSubmissionPage() {
                 Profil lengkap untuk kebutuhan internal redaksi, meliputi
                 pendidikan, pengalaman, bidang keilmuan, dan karya yang relevan.
               </li>
+              <li>
+                Kontak penulis: nama, nomor telepon, alamat, dan nomor
+                rekening.
+              </li>
               <li>Foto penulis yang layak digunakan.</li>
               <li>File tulisan dalam format Word (.docx).</li>
             </ol>
             <p>
               <em>Nomor 2-4 cukup dikirim pada pengajuan pertama.</em>
             </p>
+            <p>
+              Agar lebih mudah, salin format email berikut, lalu lengkapi
+              datanya:
+            </p>
+          </div>
+
+          <div className="mt-4">
+            <CopyableTemplate
+              label="Format email pengajuan"
+              text={SUBMISSION_TEMPLATE}
+            />
+          </div>
+
+          <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
+            <Button size="lg" render={<a href={mailtoHref} />}>
+              Ajukan Tulisan Anda
+            </Button>
+            <a
+              href={mailtoHref}
+              className="text-sm font-medium text-primary hover:underline"
+            >
+              {SUBMISSION_EMAIL}
+            </a>
+          </div>
+
+          <div className="article-content mt-10">
 
             <h2>Proses Editorial</h2>
             <p>Redaksi akan melakukan peninjauan. Tulisan dapat:</p>
@@ -112,10 +159,9 @@ export default function ContributorSubmissionPage() {
 
             <h2>Hak dan Apresiasi</h2>
             <ul>
-              <li>Nama penulis dicantumkan pada artikel.</li>
               <li>
-                Artikel dapat dipublikasikan di website dan media sosial Markaz
-                Fiqih.
+                Artikel dapat dipublikasikan dengan mencantumkan nama penulis di
+                website dan media sosial Markaz Fiqih.
               </li>
               <li>
                 Kontributor memperoleh kesempatan mendapatkan profil publikasi
@@ -131,10 +177,6 @@ export default function ContributorSubmissionPage() {
               </li>
             </ul>
           </div>
-
-          <Button size="lg" className="mt-8" render={<a href={mailtoHref} />}>
-            Ajukan Tulisan Anda
-          </Button>
 
           <div className="mt-10 border-t border-border pt-6">
             <Link
